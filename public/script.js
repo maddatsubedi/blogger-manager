@@ -1,3 +1,9 @@
+const LOADER_HTML = `
+ <div class="loader"></div>
+`
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 document.addEventListener('DOMContentLoaded', async (e) => {
 
     // Initial DOM Setup
@@ -31,6 +37,16 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         }
     });
 
+    // Popup Close
+    const popupWrapper = document.getElementById("popup-wrapper");
+    popupWrapper.addEventListener("click", async (e) => {
+        const popup = e.target.closest(".popup");
+        const popupButton = e.target.closest(".popup-btn");
+
+        if (!popup || popupButton) {
+            hidePopup();
+        }
+    });
 
     // Redirect URL Check
     const redirectUrlCheck = document.getElementById("redirect-url-check");
@@ -64,9 +80,60 @@ document.addEventListener('DOMContentLoaded', async (e) => {
             const redirectEnabled = data["redirectEnabled"] === "on";
             const redirectUrl = data["redirectUrl"];
 
-            console.log(countryEnabled);
-            console.log(redirectEnabled);
-            console.log(redirectUrl);
+            showPopup(null, "neutral", "neutral", true, "OK");
+            await wait(2000); // Do the API call here (currently simulated with a wait)
+            showPopup("Country Access Settings Updated", "success", "success", false, "OK");
         });
     }
+
+    // Handle Add Country Form Submission
 });
+
+const BASE_POPUP_ICON_CLASS = "popup-icon";
+const BASE_POPUP_CLASS = "popup";
+const iconClassMap = {
+    success: `${BASE_POPUP_ICON_CLASS} fa-solid fa-circle-check`,
+    error: `${BASE_POPUP_ICON_CLASS} fa-solid fa-circle-exclamation`,
+    error2: `${BASE_POPUP_ICON_CLASS} fa-solid fa-triangle-xmark`,
+    neutral: `${BASE_POPUP_ICON_CLASS} fa-solid fa-circle-info`
+};
+
+const showPopup = (text = "Click OK to close popup", status = "neutral", icon = "neutral", loading, buttonText = "OK") => {
+    const popupWrapper = document.getElementById("popup-wrapper");
+
+    if (!popupWrapper) return;
+
+    popupWrapper.dataset["status"] = status;
+    popupWrapper.dataset["loading"] = loading ? "true" : "false";
+    popupWrapper.classList.remove("display-none");
+
+    const popup = popupWrapper.querySelector(".popup");
+    const popupIcon = popup.querySelector(`.${BASE_POPUP_ICON_CLASS}`);
+    const popupText = popup.querySelector(".popup-text");
+    const popupButton = popup.querySelector(".popup-btn");
+
+    const iconClass = iconClassMap[icon] || iconClassMap[status] || iconClassMap["neutral"];
+
+    const popupClass = `${BASE_POPUP_CLASS} ${status}`;
+
+    popup.className = popupClass;
+    popupIcon.className = iconClass;
+    popupText.innerHTML = loading ? LOADER_HTML : text;
+    popupButton.disabled = loading ? true : false;
+    popupButton.textContent = buttonText || "OK";
+}
+
+const hidePopup = () => {
+    const popupWrapper = document.getElementById("popup-wrapper");
+    if (!popupWrapper) return;
+
+    const popupLoading = popupWrapper.dataset["loading"] === "true" ? true : false;
+
+    if (popupLoading) {
+        return;
+    }
+
+    if (popupWrapper) {
+        popupWrapper.classList.add("display-none");
+    }
+}

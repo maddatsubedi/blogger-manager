@@ -1,0 +1,84 @@
+.popup-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    z-index: 9999;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.popup-wrapper[data-loading="true"] {
+    cursor: default;
+}
+
+.popup-wrapper.display-none {
+    display: none;
+}
+
+.popup-wrapper.display-unset {
+    display: unset;
+}
+
+.popup {
+    display: flex;
+    max-width: 400px;
+    min-width: 300px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: var(--card-bg);
+    border-radius: 12.5px;
+    padding: 15px;
+    border: 2px solid var(--theme-blue-dark-2);
+    cursor: default;
+}
+
+.popup-icon {
+    font-size: 60px;
+    color: var(--theme-blue-dark-2);
+}
+
+.popup.error .popup-icon {
+    color: brown;
+}
+
+.popup.success .popup-icon {
+    color: green;
+}
+
+.popup-text {
+    width: 100%;
+    font-size: 1.1rem;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    border: 2px solid var(--theme-blue-dark-2);
+    padding: 7.5px;
+    border-radius: 7.5px;
+}
+
+.popup.error .popup-text {
+    /* color: brown; */
+    border-color: brown;
+}
+
+.popup.success .popup-text {
+    /* color: green; */
+    border-color: green;
+}
+
+.popup-btn:disabled,
+.popup-btn[disabled] {
+    cursor: not-allowed;
+}
+.popup-btn:disabled:hover,
+.popup-btn[disabled]:hover {
+    background: var(--theme-blue-dark-2);
+}

@@ -22,6 +22,10 @@
     color: var(--primary-color);
 }
 
+.sidebar .sidebar-line {
+    border-width: 2px;
+}
+
 .nav-menu {
     list-style: none;
     display: flex;

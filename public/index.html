@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Access Control</title>
+    <title>Blogger Manager</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="popup.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="16x16" />
 </head>
 
 <body>
@@ -18,7 +20,7 @@
     <nav class="sidebar-wrapper">
         <div class="sidebar">
             <div class="sidebar-title text-center text-blue">Dashboard</div>
-            <div class="line"></div>
+            <div class="sidebar-line line"></div>
             <ul id="nav-menu" class="nav-menu">
                 <li class="side-link active">
                     <button class="nav-btn btn btn-blue flex align-center" data-content="country-access-control">
@@ -37,10 +39,23 @@
                         <i class="fa-solid fa-robot"></i>
                         Facebook Bot Block
                     </button>
-                </li>            
+                </li>
             </ul>
         </div>
     </nav>
+
+    <div id="popup-wrapper" class="popup-wrapper display-none">
+        <div class="popup">
+            <i class="popup-icon fa-solid fa-circle-exclamation"></i>
+            <div class="popup-text">
+                Close the popup to continue
+                <!-- <div class="loader"></div> -->
+            </div>
+            <button id="popup-btn" class="popup-btn btn btn-blue">
+                OK
+            </button>
+        </div>
+    </div>
 
     <main id="country-access-control" class="main-content flex flex-col">
         <h1 class="content-header title reset-margin">
@@ -65,9 +80,11 @@
                 <div class="card-content-group redirect-section flex flex-col">
                     <div class="redirect-enable">
                         <label>Set Redirect URL:</label>
-                        <input id="redirect-url-check" class="redirect-check pointer" type="checkbox" name="redirectEnabled">
+                        <input id="redirect-url-check" class="redirect-check pointer" type="checkbox"
+                            name="redirectEnabled">
                     </div>
-                    <input id="redirect-url-input" class="redirect-url display-none" type="url" name="redirectUrl" placeholder="https://example.com/blocked">
+                    <input id="redirect-url-input" class="redirect-url display-none" type="url" name="redirectUrl"
+                        placeholder="https://example.com/blocked">
                 </div>
                 <button type="submit" class="card-main-btn btn btn-blue-light">Save Settings</button>
             </form>
