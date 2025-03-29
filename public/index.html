@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Access Control</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utilities.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <nav class="sidebar-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-title text-center text-blue">Dashboard</div>
+            <div class="line"></div>
+            <ul id="nav-menu" class="nav-menu">
+                <li class="side-link active">
+                    <button class="nav-btn btn btn-blue flex align-center" data-content="country-access-control">
+                        <i class="fa-solid fa-globe"></i>
+                        Country Selection
+                    </button>
+                </li>
+                <li class="side-link">
+                    <button class="nav-btn btn btn-blue flex align-center" data-content="vpn-access-control">
+                        <i class="fa-solid fa-wifi"></i>
+                        VPN Block
+                    </button>
+                </li>
+                <li class="side-link">
+                    <button class="nav-btn btn btn-blue flex align-center" data-content="facebook-bot-control">
+                        <i class="fa-solid fa-robot"></i>
+                        Facebook Bot Block
+                    </button>
+                </li>            
+            </ul>
+        </div>
+    </nav>
+
+    <main id="country-access-control" class="main-content flex flex-col">
+        <h1 class="content-header title reset-margin">
+            Country Access Control
+        </h1>
+        <div class="card shadow-card flex flex-col">
+            <h2 class="card-title flex flex-center width-fit">
+                Access Settings
+                <span class="line line-vertical card-line"></span>
+                <i class="fa-solid fa-universal-access highlight-blue"></i>
+            </h2>
+            <div class="line"></div>
+            <form class="card-content" id="country-access">
+                <div class="card-content-group enable-country">
+                    <label>Enable Country Blocking</label>
+                    <div class="line line-vertical"></div>
+                    <label class="slider-switch">
+                        <input type="checkbox" name="countryEnabled">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="card-content-group redirect-section flex flex-col">
+                    <div class="redirect-enable">
+                        <label>Set Redirect URL:</label>
+                        <input id="redirect-url-check" class="redirect-check pointer" type="checkbox" name="redirectEnabled">
+                    </div>
+                    <input id="redirect-url-input" class="redirect-url display-none" type="url" name="redirectUrl" placeholder="https://example.com/blocked">
+                </div>
+                <button type="submit" class="card-main-btn btn btn-blue-light">Save Settings</button>
+            </form>
+        </div>
+
+        <div class="card shadow-card flex flex-col countries">
+            <h2 class="card-title flex flex-center width-fit">
+                Allowed Countries
+                <span class="line line-vertical card-line"></span>
+                <i class="fa-solid fa-flag highlight-blue"></i>
+            </h2>
+            <div class="line"></div>
+            <div class="card-content" id="countryForm" action="/add-country" method="POST">
+                <form class="card-content-group countries-selector">
+                    <select class="country-select pointer" name="code" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                    <input type="hidden" name="name" id="countryName">
+                    <button type="submit" class="country-submit btn btn-blue-light">Add Country</button>
+                </form>
+
+                <div class="card-content-group countries-list">
+                    <div class="country-item">
+                        <div class="country-name">Country1</div class="country-name">
+                        <button type="submit" class="del-btn btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="country-item">
+                        <div class="country-name">Country2</div class="country-name">
+                        <button type="submit" class="del-btn btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="country-item">
+                        <div class="country-name">Country3</div class="country-name">
+                        <button type="submit" class="del-btn btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="country-item">
+                        <div class="country-name">Country4</div class="country-name">
+                        <button type="submit" class="del-btn btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="country-item">
+                        <div class="country-name">Country5</div class="country-name">
+                        <button type="submit" class="del-btn btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <main id="vpn-access-control" class="main-content flex flex-col display-none">
+        <h1 class="content-header title reset-margin">
+            VPN Access Control
+        </h1>
+    </main>
+    <main id="facebook-bot-control" class="main-content flex flex-col display-none">
+        <h1 class="content-header title reset-margin">
+            Facebook Bot Control
+        </h1>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
