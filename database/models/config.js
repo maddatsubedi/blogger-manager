@@ -25,6 +25,10 @@ const getAllConfigs = () => {
     return db.prepare('SELECT * FROM config').all();
 };
 
+const unsetConfig = (key) => {
+    setConfig(key, null);
+}
+
 const deleteConfig = (key) => {
     const result = db.prepare('DELETE FROM config WHERE key = ?').run(key);
     return result.changes > 0;
@@ -67,6 +71,7 @@ module.exports = {
     setConfig,
     getConfig,
     getAllConfigs,
+    unsetConfig,
     deleteConfig,
     resetConfig,
     addMultiValueConfig,

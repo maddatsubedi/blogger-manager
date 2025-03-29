@@ -48,7 +48,7 @@
 }
 
 .popup.success .popup-icon {
-    color: green;
+    color: rgb(0, 105, 0);
 }
 
 .popup-text {
@@ -71,7 +71,7 @@
 
 .popup.success .popup-text {
     /* color: green; */
-    border-color: green;
+    border-color: rgb(0, 105, 0);
 }
 
 .popup-btn:disabled,

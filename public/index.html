@@ -17,9 +17,14 @@
 
 <body>
 
-    <nav class="sidebar-wrapper">
+    <nav id="sidebar-wrapper" class="sidebar-wrapper">
         <div class="sidebar">
-            <div class="sidebar-title text-center text-blue">Dashboard</div>
+            <div class="sidebar-title flex align-center justify-center">
+                <div class="sidebar-title-text text-blue">
+                    Dashboard
+                </div>
+                <i id="sidebar-toggle" class="sidebar-toggle fa-solid fa-angle-right"></i>
+            </div>
             <div class="sidebar-line line"></div>
             <ul id="nav-menu" class="nav-menu">
                 <li class="side-link active">
@@ -37,7 +42,7 @@
                 <li class="side-link">
                     <button class="nav-btn btn btn-blue flex align-center" data-content="facebook-bot-control">
                         <i class="fa-solid fa-robot"></i>
-                        Facebook Bot Block
+                        Facebook Bot
                     </button>
                 </li>
             </ul>
@@ -98,46 +103,39 @@
             </h2>
             <div class="line"></div>
             <div class="card-content" id="countryForm" action="/add-country" method="POST">
-                <form class="card-content-group countries-selector">
-                    <select class="country-select pointer" name="code" required>
+                <form id="country-add" class="card-content-group countries-selector">
+                    <select class="country-select pointer" name="countrycode" required>
                         <option value="">Select Country</option>
                         <option value="US">United States</option>
                         <option value="GB">United Kingdom</option>
                         <option value="CA">Canada</option>
                         <option value="AU">Australia</option>
                     </select>
-                    <input type="hidden" name="name" id="countryName">
                     <button type="submit" class="country-submit btn btn-blue-light">Add Country</button>
                 </form>
 
-                <div class="card-content-group countries-list">
-                    <div class="country-item">
-                        <div class="country-name">Country1</div class="country-name">
-                        <button type="submit" class="del-btn btn btn-danger">
+                <div id="countries-list" class="card-content-group countries-list">
+                    <div class="country-item" data-countrycode="US">
+                        <div class="country-name">United States</div class="country-name">
+                        <button type="submit" class="country-del-btn btn btn-danger">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
-                    <div class="country-item">
-                        <div class="country-name">Country2</div class="country-name">
-                        <button type="submit" class="del-btn btn btn-danger">
+                    <div class="country-item" data-countrycode="GB">
+                        <div class="country-name">United Kingdom</div class="country-name">
+                        <button type="submit" class="country-del-btn btn btn-danger">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
-                    <div class="country-item">
-                        <div class="country-name">Country3</div class="country-name">
-                        <button type="submit" class="del-btn btn btn-danger">
+                    <div class="country-item" data-countrycode="CA">
+                        <div class="country-name">Canada</div class="country-name">
+                        <button type="submit" class="country-del-btn btn btn-danger">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
-                    <div class="country-item">
-                        <div class="country-name">Country4</div class="country-name">
-                        <button type="submit" class="del-btn btn btn-danger">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="country-item">
-                        <div class="country-name">Country5</div class="country-name">
-                        <button type="submit" class="del-btn btn btn-danger">
+                    <div class="country-item" data-countrycode="AU">
+                        <div class="country-name">Australia</div class="country-name">
+                        <button type="submit" class="country-del-btn btn btn-danger">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>

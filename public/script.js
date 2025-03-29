@@ -8,6 +8,27 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     // Initial DOM Setup
 
+    // Sidebar Toggle
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+    const sidebarWrapper = document.getElementById("sidebar-wrapper");
+
+    const toggleIconOpenClass = "sidebar-toggle nav-open fa-solid fa-angle-left";
+    const toggleIconCloseClass = "sidebar-toggle fa-solid fa-angle-right";
+
+    if (sidebarToggle && sidebarWrapper) {
+        sidebarToggle.addEventListener("click", async (e) => {
+            const isOpen = sidebarWrapper.classList.contains("nav-open");
+
+            if (isOpen) {
+                sidebarWrapper.classList.remove("nav-open");
+                sidebarToggle.className = toggleIconCloseClass;
+            } else {
+                sidebarWrapper.classList.add("nav-open");
+                sidebarToggle.className = toggleIconOpenClass;
+            }
+        });
+    }
+
     // Sidebar Switcher
     const navMenu = document.getElementById("nav-menu");
     const mainContents = document.querySelectorAll(".main-content");
@@ -87,6 +108,42 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     }
 
     // Handle Add Country Form Submission
+    const countryAddForm = document.getElementById("country-add");
+    if (countryAddForm) {
+        countryAddForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(countryAddForm);
+            const data = Object.fromEntries(formData.entries());
+
+            const countryCode = data["countrycode"];
+
+            console.log(data);
+            // console.log(countryCode);
+
+            showPopup(null, "neutral", "neutral", true, "OK");
+            await wait(2000); // Do the API call here (currently simulated with a wait)
+            showPopup("Country Added Successfully", "success", "success", false, "OK");
+        });
+    }
+
+    // Handle Remove Country
+    const countriesList = document.getElementById("countries-list");
+    if (countriesList) {
+        countriesList.addEventListener("click", async (e) => {
+            const countryElement = e.target.closest(".country-item");
+            if (!countryElement) return;
+
+            const removeButton = e.target.closest(".country-del-btn");
+            if (!removeButton) return;
+
+            const countryCode = countryElement.dataset["countrycode"];
+            console.log(countryCode);
+
+            showPopup(null, "neutral", "neutral", true, "OK");
+            await wait(2000); // Do the API call here (currently simulated with a wait)
+            showPopup("Country Removed Successfully", "success", "success", false, "OK");
+        });
+    }
 });
 
 const BASE_POPUP_ICON_CLASS = "popup-icon";
