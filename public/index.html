@@ -18,6 +18,7 @@
 <body>
 
     <nav id="sidebar-wrapper" class="sidebar-wrapper">
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
         <div class="sidebar">
             <div class="sidebar-title flex align-center justify-center">
                 <div class="sidebar-title-text text-blue">
@@ -70,7 +71,7 @@
             <h2 class="card-title flex flex-center width-fit">
                 Access Settings
                 <span class="line line-vertical card-line"></span>
-                <i class="fa-solid fa-universal-access highlight-blue"></i>
+                <i class="card-title-icon fa-solid fa-universal-access highlight-blue"></i>
             </h2>
             <div class="line"></div>
             <form class="card-content" id="country-access">
@@ -99,7 +100,7 @@
             <h2 class="card-title flex flex-center width-fit">
                 Allowed Countries
                 <span class="line line-vertical card-line"></span>
-                <i class="fa-solid fa-flag highlight-blue"></i>
+                <i class="card-title-icon fa-solid fa-flag highlight-blue"></i>
             </h2>
             <div class="line"></div>
             <div class="card-content" id="countryForm" action="/add-country" method="POST">

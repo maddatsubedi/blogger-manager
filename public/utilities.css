@@ -12,6 +12,10 @@ body {
     min-height: 100vh;
 }
 
+body.disable-scroll {
+    overflow: hidden;
+}
+
 :root {
     --primary-color: #2563eb;
     --background: #f3f4f6;
@@ -203,13 +207,6 @@ body {
     bottom: 0px;
     border-radius: 20px;
     border: 2px solid var(--theme-yellow-primary);
-}
-
-
-@media screen and (max-width: 500px) {
-    .title {
-        font-size: 1.5rem;
-    }
 }
 
 .line {

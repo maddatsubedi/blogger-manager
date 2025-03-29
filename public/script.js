@@ -11,21 +11,43 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // Sidebar Toggle
     const sidebarToggle = document.getElementById("sidebar-toggle");
     const sidebarWrapper = document.getElementById("sidebar-wrapper");
+    const sidebarOverlay = document.getElementById("sidebar-overlay");
 
     const toggleIconOpenClass = "sidebar-toggle nav-open fa-solid fa-angle-left";
     const toggleIconCloseClass = "sidebar-toggle fa-solid fa-angle-right";
 
+    const toggleSidebar = () => {
+        const isOpen = sidebarWrapper.classList.contains("nav-open");
+        if (isOpen) {
+            sidebarWrapper.classList.remove("nav-open");
+            sidebarToggle.className = toggleIconCloseClass;
+            enableScroll();
+        } else {
+            sidebarWrapper.classList.add("nav-open");
+            sidebarToggle.className = toggleIconOpenClass;
+            disableScroll();
+        }
+    }
+
+    const disableScroll = () => {
+        document.body.classList.add("disable-scroll");
+    }
+
+    const enableScroll = () => {
+        document.body.classList.remove("disable-scroll");
+    }
+
+    // Sidebar Toggle with toggle icon
     if (sidebarToggle && sidebarWrapper) {
         sidebarToggle.addEventListener("click", async (e) => {
-            const isOpen = sidebarWrapper.classList.contains("nav-open");
+            toggleSidebar();
+        });
+    }
 
-            if (isOpen) {
-                sidebarWrapper.classList.remove("nav-open");
-                sidebarToggle.className = toggleIconCloseClass;
-            } else {
-                sidebarWrapper.classList.add("nav-open");
-                sidebarToggle.className = toggleIconOpenClass;
-            }
+    // Sidebar Toggle with overlay
+    if (sidebarOverlay && sidebarWrapper) {
+        sidebarOverlay.addEventListener("click", async (e) => {
+            toggleSidebar();
         });
     }
 
